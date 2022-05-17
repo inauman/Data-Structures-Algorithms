@@ -1,4 +1,4 @@
-import unittest
+
 
 def countx(mystr):
 
@@ -12,7 +12,8 @@ def countx(mystr):
   else:
     return countx(mystr[1:len(mystr)])
 
-
+# Unit Test Cases
+import unittest
 class test_countx(unittest.TestCase):
   def test_count_x(self):
     self.assertEqual(countx('axbxcxd'), 3)

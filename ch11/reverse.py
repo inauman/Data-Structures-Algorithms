@@ -7,4 +7,13 @@ def reverse(code):
   # Subprogram
   return reverse(code[1:len(code)]) + code[0]
 
-print(reverse('abcd'))
+# Unit Test Cases
+import unittest
+
+class test_reverse(unittest.TestCase):
+  def test_count_x(self):
+    self.assertEqual(reverse('abcd'), 'dcba')
+    
+if __name__ == '__main__':
+  unittest.main()
+  

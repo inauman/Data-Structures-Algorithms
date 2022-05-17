@@ -6,4 +6,11 @@ def sum(arr):
     # Subproblem
     return arr[0] + sum(arr[1:len(arr)])
 
-print(sum([1,2,3,4,5]))
+# Unit Test Cases
+import unittest
+class test_countx(unittest.TestCase):
+  def test_count_x(self):
+    self.assertEqual(sum([1,2,3,4,5]), 15)
+    
+if __name__ == '__main__':
+  unittest.main()
