@@ -24,7 +24,7 @@ def even_array(arr):
 import unittest
 
 
-class test_reverse(unittest.TestCase):
+class test_array(unittest.TestCase):
     def test_even_array(self):
         self.assertEqual(even_array([1,3,4,6,8,9,11]), [4,6,8])
 

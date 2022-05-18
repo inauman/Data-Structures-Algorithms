@@ -10,8 +10,8 @@ def char_counter(arr):
 # Unit Tests
 import unittest
 
-class test_char_count(unittest.TestCase):
-    def test_count_x(self):
+class test_char_counter(unittest.TestCase):
+    def test_char_count(self):
         self.assertEqual(char_counter(['ab','c','def','ghij']), 10)
 
 if __name__ == '__main__':

@@ -11,10 +11,9 @@ def sum(arr):
 import unittest
 
 
-class test_countx(unittest.TestCase):
-    def test_count_x(self):
+class test_array_sum(unittest.TestCase):
+    def test_sum_array(self):
         self.assertEqual(sum([1, 2, 3, 4, 5]), 15)
-
 
 if __name__ == '__main__':
     unittest.main()
