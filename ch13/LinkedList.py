@@ -27,7 +27,6 @@ class LinkedList:
                 return 'None'
             elif current_node.data == search_str:
                 return current_index
-            
 
             current_node = current_node.next
             current_index += 1
@@ -45,6 +44,45 @@ class LinkedList:
         # join the nodes using -> separator
         return " -> ".join(nodes)
 
+
+import unittest
+from Node import Node
+
+
+class tc_linkedlist(unittest.TestCase):
+    def setUp(self):
+        self.first_node = Node('a')
+        self.second_node = Node('b')
+        self.third_node = Node('c')
+        self.fourth_node = Node('d')
+        self.fifth_node = Node('e')
+        self.first_node.next = self.second_node
+        self.second_node.next = self.third_node
+        self.third_node.next = self.fourth_node
+        self.fourth_node.next = self.fifth_node
+        self.llist = LinkedList()
+        self.llist.head = self.first_node
+        #print(self.llist)
+
+    def tearDown(self):
+        #print(self.llist)
+        pass
+
+    def test_read_in_ll(self):
+        self.assertEqual(self.llist.read(2), 'c')
+
+    def test_read_not_in_ll(self):
+        self.assertEqual(self.llist.read(20), 'None')
+
+    def test_search_in_ll(self):
+        self.assertEqual(self.llist.search('d'), 3)
+
+    def test_search_not_in_ll(self):
+        self.assertEqual(self.llist.search('m'), 'None')
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 '''
 from Node import Node
