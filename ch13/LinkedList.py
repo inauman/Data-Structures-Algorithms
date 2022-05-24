@@ -15,7 +15,23 @@ class LinkedList:
                 return 'None'
             current_index += 1
         return current_node.data
-        
+
+    # search for a match node and return index
+    def search(self, search_str):
+
+        current_node = self.head
+        current_index = 0
+
+        while True:
+            if current_node is None:
+                return 'None'
+            elif current_node.data == search_str:
+                return current_index
+            
+
+            current_node = current_node.next
+            current_index += 1
+
     # a simple representation of the LL
     def __repr__(self):
         node = self.head
@@ -28,6 +44,7 @@ class LinkedList:
 
         # join the nodes using -> separator
         return " -> ".join(nodes)
+
 
 '''
 from Node import Node
@@ -45,5 +62,8 @@ llist = LinkedList()
 llist.head = first_node
 llist
 llist.read(2)
+llist.read(20)
+llist.search('d')
+llist.search('m')
 
 '''
