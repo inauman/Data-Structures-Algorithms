@@ -53,6 +53,25 @@ class LinkedList:
         else:
             return 'index out of bound'
 
+    def delete_at_index(self, index):
+        # start with the head of the list
+        current_node = self.head
+        current_index = 0
+
+        # deleting the first node
+        if index == 0:
+            self.head = current_node.next
+
+        # iterate to get hold of 1 node prior to the node-to-be-deleted
+        while current_index < (index - 1):
+            current_node = current_node.next
+            if current_node is None:
+                return 'index out of bound'
+            current_index += 1
+
+        current_node.next = current_node.next.next
+        return 'Done'
+
     # a simple representation of the LL
     def __repr__(self):
         node = self.head
@@ -108,7 +127,18 @@ class tc_linkedlist(unittest.TestCase):
     def test_insert_out_of_range_in_ll(self):
         self.assertEqual(self.llist.insert_at_index(20, 'aaa'),
                          'index out of bound')
+    
+    def test_delete_node_from_ll(self):
+        print(f'\n{self.llist}')
+        self.assertEqual(self.llist.delete_at_index(2),
+                         'Done')
+        print(f'\n{self.llist}')
 
+    def test_delete_node_out_of_range_from_ll(self):
+        print(f'\n{self.llist}')
+        self.assertEqual(self.llist.delete_at_index(20),
+                         'index out of bound')
+        print(f'\n{self.llist}')
 
 if __name__ == '__main__':
     unittest.main()
