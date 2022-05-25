@@ -72,6 +72,20 @@ class LinkedList:
         current_node.next = current_node.next.next
         return 'Done'
 
+    def reverse(self):
+        current_node = self.head
+        previous_node = None
+        next_node = None
+
+        while current_node:
+            next_node = current_node.next
+            current_node.next = previous_node
+            previous_node = current_node
+            current_node = next_node
+
+        self.head = previous_node
+        return 'Done'
+
     # a simple representation of the LL
     def __repr__(self):
         node = self.head
@@ -127,18 +141,22 @@ class tc_linkedlist(unittest.TestCase):
     def test_insert_out_of_range_in_ll(self):
         self.assertEqual(self.llist.insert_at_index(20, 'aaa'),
                          'index out of bound')
-    
+
     def test_delete_node_from_ll(self):
         print(f'\n{self.llist}')
-        self.assertEqual(self.llist.delete_at_index(2),
-                         'Done')
+        self.assertEqual(self.llist.delete_at_index(2), 'Done')
         print(f'\n{self.llist}')
 
     def test_delete_node_out_of_range_from_ll(self):
         print(f'\n{self.llist}')
-        self.assertEqual(self.llist.delete_at_index(20),
-                         'index out of bound')
+        self.assertEqual(self.llist.delete_at_index(20), 'index out of bound')
         print(f'\n{self.llist}')
+
+    def test_reverse_ll(self):
+        print(f'\n{self.llist}')
+        self.assertEqual(self.llist.reverse(), 'Done')
+        print(f'\n{self.llist}')
+
 
 if __name__ == '__main__':
     unittest.main()
