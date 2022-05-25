@@ -16,9 +16,9 @@ class LinkedList:
             current_index += 1
         return current_node.data
 
-    # search for a match node and return index
+    # search for a matching node and return index
     def search(self, search_str):
-
+        # start with the head of the llist
         current_node = self.head
         current_index = 0
 
@@ -30,6 +30,28 @@ class LinkedList:
 
             current_node = current_node.next
             current_index += 1
+
+    def insert_at_index(self, index, value):
+        # start with the head of the llist
+        current_node = self.head
+        current_index = 0
+
+        # prep the new node
+        new_node = Node(value)
+
+        while current_index < index:
+            current_node = current_node.next
+
+            if current_node is None:
+                break
+            current_index += 1
+
+        if current_index == index:
+            new_node.next = current_node.next
+            current_node.next = new_node
+            return 'Done'
+        else:
+            return 'index out of bound'
 
     # a simple representation of the LL
     def __repr__(self):
@@ -80,10 +102,16 @@ class tc_linkedlist(unittest.TestCase):
     def test_search_not_in_ll(self):
         self.assertEqual(self.llist.search('m'), 'None')
 
+    def test_insert_in_ll(self):
+        self.assertEqual(self.llist.insert_at_index(1, 'mayesha'), 'Done')
+
+    def test_insert_out_of_range_in_ll(self):
+        self.assertEqual(self.llist.insert_at_index(20, 'aaa'),
+                         'index out of bound')
+
 
 if __name__ == '__main__':
     unittest.main()
-
 '''
 from Node import Node
 from LinkedList import LinkedList
@@ -103,5 +131,6 @@ llist.read(2)
 llist.read(20)
 llist.search('d')
 llist.search('m')
-
+llist.insert_at_index(1, 'aaa')
+llist.insert_at_index(10, 'bbb')
 '''
