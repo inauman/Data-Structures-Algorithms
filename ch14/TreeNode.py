@@ -1,4 +1,4 @@
-class Tree:
+class TreeNode:
 
     def __init__(self, val, left=None, right=None):
         self.value = val
