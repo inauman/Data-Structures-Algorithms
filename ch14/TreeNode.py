@@ -1,7 +1,6 @@
 class TreeNode:
-
-    def __init__(self, data, leftChild=None, rightChild=None):
-        self.data = data
+    def __init__(self, value, leftChild=None, rightChild=None):
+        self.value = value
         self.leftChild = leftChild
         self.rightChild = rightChild
 
@@ -11,22 +10,51 @@ class TreeNode:
             return node
         elif value < node.data:
             return self.search(value, node.leftChild)
-        else: #value > node.data
+        else:  #value > node.data
             return self.search(value, node.rightChild)
-        
+
             # Sub problem
+
+    def insert(self, value, node):
+
+        if value < node.value:  #left side of the tree
+            if node.leftChild is None:
+                node.leftChild = TreeNode(value)
+            else:
+                node.insert(value, node.leftChild)
+        elif value > node.value:  # rigth side of the tree
+            if node.rightChild is None:
+                node.rightChild = TreeNode(value)
+            else:
+                node.insert(value, node.rightChild)
+
+    def delete(self, value_to_delete,  node):
+
+        # Base Case: Reached bottom of the tree and the node(parent) has no children
+        if node is None:
+            return None
+        elif value_to_delete < node.value:
+            node.leftChild = self.delete(value_to_delete, node.leftChild)
+            return node
+        elif value_to_delete > node.value:
+            node.rightChild = self.delete(value_to_delete, node.rightChild)
+            return node
+        elif value_to_delete == node.value:
+            if node.leftChild is None:
+                return node.rightChild
+            elif node.rightChild is None:
+                return node.leftChild
+            else:
+                pass
         
+        pass
     def __repr__(self):
-        return str(self.data)
+        pass
 
 
-'''
-from TreeNode import TreeNode
-leftChild = TreeNode(25)
-rightChild = TreeNode(75)
-root = TreeNode(50, leftChild, rightChild)
-'''
 import unittest
+
+
 class tc_treenode(unittest.TestCase):
     def setUp(self):
         self.leftChild = TreeNode(25)
@@ -40,6 +68,7 @@ class tc_treenode(unittest.TestCase):
 
     def test_search_in_tree(self):
         self.assertEqual(self.tree.search(75, self.tree).data, 75)
+
 
 if __name__ == '__main__':
     unittest.main()
