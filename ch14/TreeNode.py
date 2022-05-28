@@ -45,9 +45,17 @@ class TreeNode:
             elif node.rightChild is None:
                 return node.leftChild
             else:
-                pass
+                node.rightChild = self.lift(node.rightChild, node)
+                return node
+    
+    def lift(self, node, nodeToDelte):
+        if node.leftChild:
+            node.leftChild = self.lift(node.leftChild, nodeToDelte)
+            return node
+        else:
+            nodeToDelte.value = node.value
+            return node.rightChild
         
-        pass
     def __repr__(self):
         pass
 
