@@ -18,7 +18,7 @@ def add_commit_push(*args):
     print(output)
 
     #branch = input("Which branch do you want to push to? ")
-    branch = "master"
+    branch = "main"
         
     stream = os.popen(f"git add -A; \
         git commit -m '{message}'; \
