@@ -43,11 +43,11 @@ class TreeNode:
             node.rightChild = self.delete(value_to_delete, node.rightChild)
             return node
         elif value_to_delete == node.value:
-            if node.leftChild is None:
+            if node.leftChild is None: # only one child (right child) node
                 return node.rightChild
-            elif node.rightChild is None:
+            elif node.rightChild is None: # only one child (left child) node
                 return node.leftChild
-            else:
+            else: # two child nodes
                 node.rightChild = self.lift(node.rightChild, node)
                 return node
     
