@@ -16,18 +16,20 @@ class TreeNode:
             return self.search(search_value, node)
             # Sub problem
 
-    def insert(self, value, node):
+    def insert(self, insert_value, node):
 
-        if value < node.value:  #left side of the tree
+        if insert_value < node.value:  #left side of the tree
             if node.leftChild is None:
-                node.leftChild = TreeNode(value)
+                node.leftChild = TreeNode(insert_value)
             else:
-                node.insert(value, node.leftChild)
-        elif value > node.value:  # rigth side of the tree
+                node = node.leftChild
+                node.insert(insert_value, node)
+        elif insert_value > node.value:  # rigth side of the tree
             if node.rightChild is None:
-                node.rightChild = TreeNode(value)
+                node.rightChild = TreeNode(insert_value)
             else:
-                node.insert(value, node.rightChild)
+                node = node.rigthChild
+                node.insert(insert_value, node)
 
     def delete(self, value_to_delete,  node):
 
