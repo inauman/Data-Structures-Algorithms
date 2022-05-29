@@ -4,15 +4,16 @@ class TreeNode:
         self.leftChild = leftChild
         self.rightChild = rightChild
 
-    def search(self, value, node):
+    def search(self, search_value, node):
         # Base Case
-        if node is None or value == node.data:
+        if node is None or search_value == node.value:
             return node
-        elif value < node.data:
-            return self.search(value, node.leftChild)
-        else:  #value > node.data
-            return self.search(value, node.rightChild)
-
+        elif search_value < node.value: # traverse the left side
+            node = node.leftChild
+            return self.search(search_value, node)
+        else:  #value > node.value,  traverse the right side
+            node = node.rigthChild
+            return self.search(search_value, node)
             # Sub problem
 
     def insert(self, value, node):
