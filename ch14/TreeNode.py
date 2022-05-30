@@ -1,3 +1,6 @@
+import unittest
+
+
 class TreeNode:
     def __init__(self, value, leftChild=None, rightChild=None):
         self.value = value
@@ -8,17 +11,17 @@ class TreeNode:
         # Base Case
         if node is None or search_value == node.value:
             return node
-        elif search_value < node.value: # traverse the left side
+        elif search_value < node.value:  # traverse the left side
             node = node.leftChild
             return self.search(search_value, node)
-        else:  #value > node.value,  traverse the right side
+        else:  # value > node.value,  traverse the right side
             node = node.rigthChild
             return self.search(search_value, node)
             # Sub problem
 
     def insert(self, insert_value, node):
 
-        if insert_value < node.value:  #left side of the tree
+        if insert_value < node.value:  # left side of the tree
             if node.leftChild is None:
                 node.leftChild = TreeNode(insert_value)
             else:
@@ -43,14 +46,14 @@ class TreeNode:
             node.rightChild = self.delete(value_to_delete, node.rightChild)
             return node
         elif value_to_delete == node.value:
-            if node.leftChild is None: # only one child (right child) node
+            if node.leftChild is None:  # only one child (right child) node
                 return node.rightChild
-            elif node.rightChild is None: # only one child (left child) node
+            elif node.rightChild is None:  # only one child (left child) node
                 return node.leftChild
-            else: # two child nodes
+            else:  # two child nodes
                 node.rightChild = self.lift(node.rightChild, node)
                 return node
-    
+
     def lift(self, node, nodeToDelte):
         if node.leftChild:
             node.leftChild = self.lift(node.leftChild, nodeToDelte)
@@ -58,12 +61,9 @@ class TreeNode:
         else:
             nodeToDelte.value = node.value
             return node.rightChild
-        
+
     def __repr__(self):
         pass
-
-
-import unittest
 
 
 class tc_treenode(unittest.TestCase):
@@ -74,7 +74,7 @@ class tc_treenode(unittest.TestCase):
         print(self.tree)
 
     def tearDown(self):
-        #print(self.llist)
+        # print(self.llist)
         pass
 
     def test_search_in_tree(self):
