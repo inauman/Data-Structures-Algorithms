@@ -61,9 +61,18 @@ class TreeNode:
         else:
             # replace the node-to-be-deleted with the successor. There is really no deletion happing here, it is just a rearrangement & replacement of nodes.
             nodeToDelte.value = node.value
-            
+
             # move the original successor right child into the parent's left child.
             return node.rightChild
+
+    # inorder traversal
+    def traverse(self, node):   
+        if node is None:
+            return
+
+        self.traverse(node.leftChild)
+        print(node.value)
+        self.traverse(node.rigthChild)
 
     def __repr__(self):
         pass
