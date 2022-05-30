@@ -59,7 +59,10 @@ class TreeNode:
             node.leftChild = self.lift(node.leftChild, nodeToDelte)
             return node
         else:
+            # replace the node-to-be-deleted with the successor. There is really no deletion happing here, it is just a rearrangement & replacement of nodes.
             nodeToDelte.value = node.value
+            
+            # move the original successor right child into the parent's left child.
             return node.rightChild
 
     def __repr__(self):
