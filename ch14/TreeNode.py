@@ -66,13 +66,36 @@ class TreeNode:
             return node.rightChild
 
     # inorder traversal
-    def traverse(self, node):   
+    def traverse_in_order(self, node):
+
+        # Base Case
         if node is None:
             return
 
         self.traverse(node.leftChild)
         print(node.value)
         self.traverse(node.rigthChild)
+
+    # preorder traversal
+    def traverse_pre_order(self, node):
+
+        # Base Case
+        if node is None:
+            return
+
+        print(node.value)
+        self.traverse(node.leftChild)
+        self.traverse(node.rigthChild)
+
+    # inorder traversal
+    def traverse_post_order(self, node):
+        # Base Case
+        if node is None:
+            return
+
+        self.traverse(node.leftChild)
+        self.traverse(node.rigthChild)
+        print(node.value)
 
     def __repr__(self):
         pass
