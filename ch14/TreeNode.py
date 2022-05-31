@@ -97,6 +97,14 @@ class TreeNode:
         self.traverse(node.rigthChild)
         print(node.value)
 
+    def find_max(self, node):
+
+        # Base Case
+        if node.rightChild:
+            return self.find_max(node.rigthChild)
+        else:
+            return node.value
+
     def __repr__(self):
         pass
 
