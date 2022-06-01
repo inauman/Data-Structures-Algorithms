@@ -18,3 +18,14 @@ class heap:
     def parent_index(index):
         # formula parent index = (child index - 1) // 2 (note: integer division ==> math.floor)
         return (index -1)//2 # note: two slashes "//" are used for integer divison (instead of using math.floor)
+    
+    def insert(self, value):
+        #insert the value at the end of the array
+        self.data.append(value)
+        
+        
+        # track the index of the newly inserted node
+        new_node_index = len(self.data) - 1
+        
+        # trickle up the value to be compliant with the heap rule i.e. parent should be more than the child nodes
+        #TODO trickle up algo...
