@@ -67,6 +67,26 @@ class vertex:
 
         return None
 
+    def bfs_traverse(vertex):
+
+        # queue will be used to power up the bfs FIFO traversal
+        # while queue can be implemented in different ways, will be using simple list here
+        queue = []
+
+        visited_vertices = {}
+
+        visited_vertices[vertex.value] = True
+        queue.append(vertex)
+        while queue:
+            current_vertex = queue.pop(0)
+            print(current_vertex.value)
+
+            for adjacent_vertex in current_vertex.adjacent_vertices:
+                if not visited_vertices.get(adjacent_vertex.value):
+                    visited_vertices[adjacent_vertex.value] = True
+
+                    queue.append(adjacent_vertex)
+
 
 class tc_graph(unittest.TestCase):
 
@@ -94,10 +114,16 @@ class tc_graph(unittest.TestCase):
 
     def tearDown(self):
         pass
-
-    def test_dfs(self):
+    '''
+    def test_dfs_traverse(self):
         self.alice.dfs_traverse(self.alice)
-        self.alice.dfs_search(self.alice, "Derek").value
+
+    
+    def test_dfs_search(self):
+        self.alice.dfs_search(self.alice, "Derek").value'''
+
+    def test_bfs_traverse(self):
+        self.alice.bfs_traverse()
 
 
 if __name__ == '__main__':
