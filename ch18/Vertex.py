@@ -37,33 +37,37 @@ class vertex:
 
             self.dfs_traverse(adjacent_vertex, visited_vertices)
 
-    def search_dfs(self, vertex, search_value, visited_vertices={}):
-        
+    def dfs_search(self, vertex, search_value, visited_vertices={}):
+        print(vertex.adjacent_vertices)
         # Return the vertex if it matches with what we are searching for
         if vertex.value == search_value:
             return vertex
-        
+
          # mark vertex visited by adding it to the hash table
         visited_vertices[vertex.value] = True
-        
+
         for adjacent_vertex in vertex.adjacent_vertices:
-            
             # Continue if the node has already been visited
             if visited_vertices.get(adjacent_vertex.value):
                 continue
-            
+
             # Return the adjacent_vertex if it matches with what we are searching for
             if adjacent_vertex.value == search_value:
                 return adjacent_vertex
-            
+
             # Didn't find the vertex yet? ok, keep calling the search function recursively
-            vertex_searching_for = self.search_dfs(adjacent_vertex, search_value, visited_vertices)
-            
-            return vertex_searching_for
-        
+            vertex_searching_for = self.dfs_search(
+                adjacent_vertex, search_value, visited_vertices)
+
+            # Important: This code is a combination of loop and recursion. Within the graph, there are many loops and each loop needs to go through recursion. So, break from a loop only if we found a value. Otherwise, if we didn't find the value, LOOP will continue to move forward with the remaining loops in the graph.
+            if vertex_searching_for:
+                return vertex_searching_for
+
         # return none if we can't find the node in the tree
-        return None             
-    
+
+        return None
+
+
 class tc_graph(unittest.TestCase):
 
     def setUp(self):
@@ -83,6 +87,7 @@ class tc_graph(unittest.TestCase):
         self.alice.add_adjacent_vertex(self.elaine)
         self.bob.add_adjacent_vertex(self.fred)
         self.fred.add_adjacent_vertex(self.helen)
+        self.helen.add_adjacent_vertex(self.candy)
         self.derek.add_adjacent_vertex(self.elaine)
         self.derek.add_adjacent_vertex(self.gina)
         self.gina.add_adjacent_vertex(self.irena)
@@ -92,6 +97,7 @@ class tc_graph(unittest.TestCase):
 
     def test_dfs(self):
         self.alice.dfs_traverse(self.alice)
+        self.alice.dfs_search(self.alice, "Derek").value
 
 
 if __name__ == '__main__':
